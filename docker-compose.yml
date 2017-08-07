@@ -1,9 +1,5 @@
 version: "2"
 services:
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
   web:
     build: .
     volumes:
@@ -14,3 +10,5 @@ services:
       NODE_ENV: test
     links:
       - mongo
+  mongo:
+    image: mongo

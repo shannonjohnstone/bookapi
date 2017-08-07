@@ -5,8 +5,9 @@ const setup = require('./setup');
 // const promMonitoring = require('./monitoring');
 
 
+console.log(process.env, '--- process.env');
 require('./env')(process.env.NODE_ENV)
-console.log(process.env, 'process.env');
+
 
 const httpRequestDurationMicroseconds = new Prometheus.Histogram({
   name: 'http_request_duration_microseconds',

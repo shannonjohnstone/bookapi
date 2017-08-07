@@ -1,16 +1,5 @@
 version: "2"
 services:
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
   web:
-    build: .
-    volumes:
-      - ./:/usr/src/app
-    ports:
-      - "3001:3001"
     environment:
       NODE_ENV: production
-    links:
-      - mongo

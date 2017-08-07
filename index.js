@@ -56,7 +56,7 @@ require('./routes')(app)
 // })
 
 app.listen(port, function() {
-  console.log(process.env.NODE_ENV);
+  console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
   console.log(`api running on http://localhost:${port}`)
 })
 

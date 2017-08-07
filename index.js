@@ -59,7 +59,7 @@ require('./routes')(app)
 console.log(process.env, 'process.env-1');
 app.listen(port, function() {
   console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
-  console.log(`api running on http://localhost:${port}`)
+  console.log(`--- api running on http://localhost:${port}`)
 })
 
 module.exports = app

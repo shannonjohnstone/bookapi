@@ -1,16 +1,16 @@
 module.exports = function(NODE_ENV) {
   switch (NODE_ENV) {
     case 'production': {
-      return require('./production.env')
+      return require('./config/production.env')
     }
     case 'development': {
-      return require('./development.env')
+      return require('./config/development.env')
     }
     case 'test': {
-      return require('./test.env')
+      return require('./config/test.env')
     }
     default: {
-      return require('./development.env')
+      return require('./config/development.env')
     }
   }
 }

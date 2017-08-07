@@ -4,8 +4,6 @@ const Prometheus = require('prom-client')
 const setup = require('./setup');
 // const promMonitoring = require('./monitoring');
 
-
-console.log(process.env, '--- process.env');
 require('./env')(process.env.NODE_ENV)
 
 const metricsInterval = Prometheus.collectDefaultMetrics()
@@ -49,7 +47,6 @@ require('./routes')(app)
 
 app.use((req, res, next) => {
   const responseTimeInMs = Date.now() - res.locals.startEpoch
-  console.log(responseTimeInMs, '---- responseTimeInMs ----');
 
   httpRequestDurationMicroseconds
     .labels(req.method, req.route.path, res.statusCode)
@@ -59,8 +56,7 @@ app.use((req, res, next) => {
 })
 
 app.listen(port, function() {
-  console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
-  console.log(`--- api running on http://localhost:${port}`)
+  console.log(`api running on http://localhost:${port}`)
 })
 
 module.exports = app

@@ -1,0 +1,31 @@
+{
+  "name": "book-api",
+  "version": "1.0.0",
+  "description": "book api service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "NODE_ENV=development nodemon index.js",
+    "start-test": "NODE_ENV=test nodemon index.js",
+    "reseed-dev": "NODE_ENV=development node ./seedDB/index.js",
+    "reseed-test": "NODE_ENV=test node ./seedDB/index.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Shannon Johnstone",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "mongoose": "^4.11.4",
+    "prom-client": "^10.0.2"
+  },
+  "devDependencies": {
+    "should": "^11.2.1",
+    "sinon": "^2.4.1",
+    "supertest": "^3.0.0"
+  }
+}

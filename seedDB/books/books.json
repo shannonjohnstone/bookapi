@@ -1,0 +1,34 @@
+{
+  "books": [
+    {
+      "title": "Books1",
+      "author": "Author1",
+      "genre": "Sci-Fiction",
+      "read": false
+    },
+    {
+      "title": "Books2",
+      "author": "Author2",
+      "genre": "Fiction",
+      "read": false
+    },
+    {
+      "title": "Books3",
+      "author": "Author3",
+      "genre": "Fiction",
+      "read": false
+    },
+    {
+      "title": "Books4",
+      "author": "Author4",
+      "genre": "Fiction",
+      "read": false
+    },
+    {
+      "title": "Books5",
+      "author": "Author5",
+      "genre": "Fiction",
+      "read": false
+    }
+  ]
+}

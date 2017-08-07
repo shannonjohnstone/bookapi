@@ -19,3 +19,8 @@ docker push registry.heroku.com/limitless-lowlands-90529/webnew
 
 
 [registry.heroku.com/limitless-lowlands-90529/testweb]
+
+docker-compose -f docker-compose.yml -f docker-compose-production.yml -p bookapi_prod up --build
+
+
+docker tag bookapiprod_web registry.heroku.com/limitless-lowlands-90529/bookapiprod_web

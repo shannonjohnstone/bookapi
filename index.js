@@ -6,6 +6,7 @@ const setup = require('./setup');
 
 
 require('./env')(process.env.NODE_ENV)
+console.log(process.env, 'process.env');
 
 const httpRequestDurationMicroseconds = new Prometheus.Histogram({
   name: 'http_request_duration_microseconds',
@@ -55,6 +56,7 @@ require('./routes')(app)
 //   next()
 // })
 
+console.log(process.env, 'process.env-1');
 app.listen(port, function() {
   console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
   console.log(`api running on http://localhost:${port}`)

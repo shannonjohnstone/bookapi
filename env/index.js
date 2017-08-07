@@ -1,5 +1,8 @@
 module.exports = function(NODE_ENV) {
   switch (NODE_ENV) {
+    case 'production': {
+      return require('./production.env')
+    }
     case 'development': {
       return require('./development.env')
     }

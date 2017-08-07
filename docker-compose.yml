@@ -11,6 +11,6 @@ services:
     ports:
       - "3001:3001"
     environment:
-      NODE_ENV: ${NODE_ENV}
+      NODE_ENV: test
     links:
       - mongo

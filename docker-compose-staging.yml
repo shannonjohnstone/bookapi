@@ -1,0 +1,14 @@
+version: "2"
+services:
+  web:
+    restart: always
+    environment:
+      NODE_ENV: stage
+    links:
+      - mongo
+    ports: [ '127.0.0.1:111:111']
+  mongo:
+    restart: always
+    volume:
+      - "/mongo:/data/db"
+    ports: ['127.0.0.1:1107'11017:]

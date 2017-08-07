@@ -46,16 +46,16 @@ app.get('/metrics', (req, res) => {
 
 require('./routes')(app)
 
-// app.use((req, res, next) => {
-//   const responseTimeInMs = Date.now() - res.locals.startEpoch
-//   console.log(responseTimeInMs, 'responseTimeInMs');
-//
-//   httpRequestDurationMicroseconds
-//     .labels(req.method, req.route.path, res.statusCode)
-//     .observe(responseTimeInMs)
-//
-//   next()
-// })
+app.use((req, res, next) => {
+  const responseTimeInMs = Date.now() - res.locals.startEpoch
+  console.log(responseTimeInMs, 'responseTimeInMs');
+
+  httpRequestDurationMicroseconds
+    .labels(req.method, req.route.path, res.statusCode)
+    .observe(responseTimeInMs)
+
+  next()
+})
 
 app.listen(port, function() {
   console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');

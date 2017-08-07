@@ -15,29 +15,32 @@ const bookMiddleware = function(req, res, next) {
 
 // get single book
 // ------------------------------------------------------------------------------------------------
-const getBook = function(req, res) {
+const getBook = function(req, res, next) {
   const returnBook = req.book.toJSON()
   returnBook.links = {}
   const genreLink = `http://${req.headers.host}/services/v1/books/?genre=${returnBook.genre}`
   returnBook.links.filterByThisGenre = genreLink.replace(' ', '%20')
   res.json(returnBook)
+  next()
 }
 
 // post new book, creates a new book
 // ------------------------------------------------------------------------------------------------
-const postNewBook = function(req, res) {
+const postNewBook = function(req, res, next) {
   const book = new Book(req.body)
   if (!req.body.title) {
     res.status(400).send('Title is required')
+    next()
   } else {
     book.save()
     res.status(201).send(book)
+    next()
   }
 }
 
 // querys all books unless it finds a query and in that case it will finds books that match the query
 // ------------------------------------------------------------------------------------------------
-const getAllOrQuery = function(req, res) {
+const getAllOrQuery = function(req, res, next) {
   let query = {}
   if (req.query.genre) query.genre = req.query.genre
 
@@ -53,12 +56,13 @@ const getAllOrQuery = function(req, res) {
       returnBooks.push(newBook)
     })
     res.json(returnBooks)
+    next()
   })
 }
 
 // updates all values on the book object
 // ------------------------------------------------------------------------------------------------
-const updateBook = function(req, res) {
+const updateBook = function(req, res, next) {
   req.book.title = req.body.title
   req.book.author = req.body.author
   req.book.genre = req.body.genre
@@ -66,12 +70,13 @@ const updateBook = function(req, res) {
   req.book.save(function(err) {
     if (err) return res.status(500).send(err)
     res.json(req.book)
+    next()
   })
 }
 
 // updates a particular value on the book object
 // ------------------------------------------------------------------------------------------------
-const patchBook = function(req, res) {
+const patchBook = function(req, res, next) {
   if (req.body._id) delete req.body._id // delete id so we do not change it in the patch
   for (let p in req.body) {
     req.book[p] = req.body[p]
@@ -80,13 +85,15 @@ const patchBook = function(req, res) {
   req.book.save(function(err) {
     if (err) return res.status(500).send(err)
     res.json(req.book)
+    next()
   })
 }
 
-const removeBook = function(req, res) {
+const removeBook = function(req, res, next) {
   req.book.remove(function(err) {
     if (err) return res.status(500).send(err)
     res.status(204).send('Removed') // 204 is the code for removed
+    next()
   })
 }
 

@@ -8,9 +8,10 @@ const setup = require('./setup');
 console.log(process.env, '--- process.env');
 require('./env')(process.env.NODE_ENV)
 
+const metricsInterval = Prometheus.collectDefaultMetrics()
 
 const httpRequestDurationMicroseconds = new Prometheus.Histogram({
-  name: 'http_request_duration_microseconds',
+  name: 'http_request_duration_ms',
   help: 'Duration of HTTP requests in ms',
   labelNames: ['method', 'route', 'code'],
   buckets: [0.10, 5, 15, 50, 100, 200, 300, 400, 500]  // buckets for response time from 0.1ms to 500ms
@@ -48,7 +49,7 @@ require('./routes')(app)
 
 app.use((req, res, next) => {
   const responseTimeInMs = Date.now() - res.locals.startEpoch
-  console.log(responseTimeInMs, 'responseTimeInMs');
+  console.log(responseTimeInMs, '---- responseTimeInMs ----');
 
   httpRequestDurationMicroseconds
     .labels(req.method, req.route.path, res.statusCode)
